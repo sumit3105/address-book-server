@@ -13,5 +13,5 @@ type User struct {
 	
 	IsDeleted bool `gorm:"default:false" json:"is_deleted"`
 	
-	Addresses []Address `gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:RESTRICT;"`
+	Addresses []Address `gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 }

@@ -17,6 +17,8 @@ import (
 
 
 func main() {
+	logger.InitLogger()
+	defer logger.Log.Sync()
 
 	err := godotenv.Load()
 	if err != nil {
@@ -24,13 +26,9 @@ func main() {
 	}
 
 	db := utils.Connect()
-
 	utils.PerformMigration(db)
 
-	validator.InitValidator()
-
-	logger.InitLogger()
-	defer logger.Log.Sync()
+	validator.InitValidator()	
 
 	userRepo := repository.NewUserRepository(db)
 	userService := service.NewAuthService(userRepo)
