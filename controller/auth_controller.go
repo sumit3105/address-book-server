@@ -53,7 +53,9 @@ func (c *authController) Register(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusCreated, gin.H{
 		"status": "success",
-		"message": "User registered successfully",
+		"data": gin.H{
+			"message": "User registered successfully",
+		},
 	})
 }
 
@@ -78,7 +80,9 @@ func (c *authController) Login(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": "success",
-		"token": token,
+		"data": gin.H{
+			"token": token,
+		},
 	})
 
 }

@@ -22,8 +22,10 @@ func ErrorHandler() gin.HandlerFunc {
 
 			response := gin.H{
 				"status": "fail",
-				"error":   ae.Code,
-				"message": ae.Message,
+				"data": gin.H{
+					"error":   ae.Code,
+					"message": ae.Message,
+				},
 			}
 
 			if len(ae.Details) > 0 {
@@ -36,8 +38,10 @@ func ErrorHandler() gin.HandlerFunc {
 
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"status": "fail",
-			"error":   "INTERNAL_ERROR",
-			"message": "Something went wrong",
+			"data": gin.H{
+				"error":   "INTERNAL_ERROR",
+				"message": "Something went wrong",
+			},
 		})
 	}
 }

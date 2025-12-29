@@ -68,7 +68,9 @@ func (c *addressController) List(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": "success",
-		"data": response,
+		"data": gin.H{
+			"addresses": response,
+		},
 		"meta": gin.H{
 			"page": page,
 			"limit": limit,
@@ -122,7 +124,9 @@ func (c *addressController) Create(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusCreated, gin.H{
 		"status": "success",
-		"message": "Contact added to the Dictionary",
+		"data": gin.H{
+			"message": "Contact added to the Dictionary",
+		},
 	})
 }
 
@@ -160,7 +164,9 @@ func (c *addressController) Update(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": "success",
-		"message": "Contact updated",
+		"data": gin.H{
+			"message": "Contact updated",
+		},
 	})
 }
 
@@ -185,7 +191,9 @@ func (c *addressController) Delete(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"status": "success",
-		"message": "Contact deleted from the Dictionary",
+		"data": gin.H{
+			"message": "Contact deleted from the Dictionary",
+		},
 	})
 }
 
@@ -219,7 +227,9 @@ func (c *addressController) Export(ctx *gin.Context) {
 	
 	ctx.JSON(http.StatusAccepted, gin.H{
 		"status": "success",
-		"message": "Export started. CSV will be sent to your email shortly.",
+		"data": gin.H{
+			"message": "Export started. CSV will be sent to your email shortly.",
+		},
 	})
 
 }

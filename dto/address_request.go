@@ -3,9 +3,9 @@ package dto
 type CreateAddressRequest struct {
 	FirstName    string `json:"first_name" validate:"required"`
 	LastName     string `json:"last_name"`
-	Email        string `json:"email" validate:"omitempty,email"`
+	Email        string `json:"email" validate:"required,email"`
 	Phone        string `json:"phone"`
-	AddressLine1 string `json:"address_line1"`
+	AddressLine1 string `json:"address_line1" validate:"required"`
 	AddressLine2 string `json:"address_line2"`
 	City         string `json:"city"`
 	State        string `json:"state"`

@@ -9,10 +9,10 @@ type Address struct {
 
 	FirstName string `gorm:"type:varchar(100);not null" json:"first_name"`
 	LastName  string `gorm:"type:varchar(100)" json:"last_name"`
-	Email     string `gorm:"type:varchar(255);index" json:"email"`
+	Email     string `gorm:"type:varchar(255);index;not null" json:"email"`
 	Phone     string `gorm:"type:varchar(20)" json:"phone" validate:"omitempty,phone"`
 
-	AddressLine1 string `gorm:"type:varchar(255)" json:"address_line1"`
+	AddressLine1 string `gorm:"type:varchar(255);not null" json:"address_line1"`
 	AddressLine2 string `gorm:"type:varchar(255)" json:"address_line2"`
 	City         string `gorm:"type:varchar(100)" json:"city"`
 	State        string `gorm:"type:varchar(100)" json:"state"`
