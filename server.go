@@ -9,10 +9,10 @@ import (
 	"address-book-server/service"
 	"address-book-server/utils"
 	"address-book-server/validator"
-	"log"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"go.uber.org/zap"
 )
 
 
@@ -20,7 +20,7 @@ func main() {
 
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("error loading the .env file")
+		logger.Log.Error("Error loading the .env file", zap.Error(err))
 	}
 
 	db := utils.Connect()

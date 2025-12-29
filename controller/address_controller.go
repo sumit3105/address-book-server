@@ -2,17 +2,18 @@ package controller
 
 import (
 	"address-book-server/dto"
+	appError "address-book-server/error"
+	"address-book-server/logger"
 	"address-book-server/model"
 	"address-book-server/service"
 	"address-book-server/utils"
 	"address-book-server/validator"
-	appError "address-book-server/error"
-	"log"
-
+	
 	"net/http"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 type AddressController interface {
@@ -238,7 +239,11 @@ func (c *addressController) runExportJob(userId uint64, req dto.ExportAddressReq
 	csvData, err := c.addressService.ExportCSV(userId, req.Fields)
 	
 	if err != nil {
-		log.Printf("Export failed for user %d: %v", userId, err)
+		logger.Log.Error(
+			"Export failed",
+			zap.Uint64("user_id", userId),
+			zap.String("error", err.Error()),
+		)
 		return
 	}
 
@@ -251,7 +256,11 @@ func (c *addressController) runExportJob(userId uint64, req dto.ExportAddressReq
 	)
 
 	if err != nil {
-		log.Printf("Email sending failed for user %d: %v", userId, err)
+		logger.Log.Error(
+			"Email sending failed",
+			zap.Uint64("user_id", userId),
+			zap.String("error", err.Error()),
+		)
 		return
 	}
 }
