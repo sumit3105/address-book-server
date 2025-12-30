@@ -8,7 +8,7 @@ import (
 )
 
 func AddressRoute(router *gin.Engine, addressController controller.AddressController) {
-	addressApi := router.Group("/api/address")
+	addressApi := router.Group("/api/v1/address")
 	addressApi.Use(middleware.AuthMiddleware())
 	{
 		addressApi.GET("/", addressController.List)

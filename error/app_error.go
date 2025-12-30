@@ -17,7 +17,7 @@ func (e *AppError) Error() string {
 	return e.Message
 }
 
-func New(statusCode int, code string, message string, err error) *AppError {
+func NewError(statusCode int, code string, message string, err error) *AppError {
 	return &AppError{
 		StatusCode: statusCode,
 		Code:       code,
@@ -36,7 +36,7 @@ func NewValidationError(details map[string]string) *AppError {
 }
 
 func BadRequest(message string, err error) *AppError {
-	return New(
+	return NewError(
 		http.StatusBadRequest,
 		"BAD_REQUEST",
 		message,
@@ -45,7 +45,7 @@ func BadRequest(message string, err error) *AppError {
 }
 
 func NotFound(message string, err error) *AppError {
-	return New(
+	return NewError(
 		http.StatusNotFound,
 		"NOT_FOUND",
 		message,
@@ -54,7 +54,7 @@ func NotFound(message string, err error) *AppError {
 }
 
 func Unauthorized(message string, err error) *AppError {
-	return New(
+	return NewError(
 		http.StatusUnauthorized,
 		"UNAUTHORIZED",
 		message,
@@ -63,7 +63,7 @@ func Unauthorized(message string, err error) *AppError {
 }
 
 func Forbidden(message string, err error) *AppError {
-	return New(
+	return NewError(
 		http.StatusForbidden,
 		"FORBIDDEN",
 		message,
@@ -72,7 +72,7 @@ func Forbidden(message string, err error) *AppError {
 }
 
 func Internal(message string, err error) *AppError {
-	return New(
+	return NewError(
 		http.StatusInternalServerError,
 		"INTERNAL_ERROR",
 		message,
