@@ -28,5 +28,5 @@ type UpdateAddressRequest struct {
 
 type ExportAddressRequest struct {
 	Fields []string `json:"fields" validate:"required,min=1"`
-	Email string `json:"email" validate:"required,email"`
+	Email  string   `json:"email" validate:"required,email"`
 }
