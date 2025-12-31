@@ -20,17 +20,23 @@ func ErrorHandler() gin.HandlerFunc {
 
 		if ae, ok := err.(*appError.AppError); ok {
 
-			response := gin.H{
-				"status": "fail",
-				"data": gin.H{
-					"error":   ae.Code,
-					"message": ae.Message,
-				},
+			data := gin.H{
+				"error": ae.Code,
+				"message": ae.Message,
 			}
 
 			if len(ae.Details) > 0 {
-				response["details"] = ae.Details
+				data["details"] = ae.Details
 			}
+
+			response := gin.H{
+				"status": "fail",
+				"data": data,
+			}
+
+			// if len(ae.Details) > 0 {
+			// 	response["details"] = ae.Details
+			// }
 
 			ctx.JSON(ae.StatusCode, response)
 			return
