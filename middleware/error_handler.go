@@ -33,11 +33,7 @@ func ErrorHandler() gin.HandlerFunc {
 				"status": "fail",
 				"data": data,
 			}
-
-			// if len(ae.Details) > 0 {
-			// 	response["details"] = ae.Details
-			// }
-
+			
 			ctx.JSON(ae.StatusCode, response)
 			return
 		}
